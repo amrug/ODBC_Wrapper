@@ -8,8 +8,9 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 # set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_BUILD_TYPE Debug)
+add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=ON)
 
-include_directories(${CMAKE_SOURCE_DIR}/src/libmymath/)
+include_directories(${CMAKE_SOURCE_DIR}/src/libmymath)
 
 add_subdirectory(src)
 add_subdirectory(tests)
