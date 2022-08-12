@@ -1,0 +1,3 @@
+from this directory, execute
+cmake .. && make -j
+to build the project
