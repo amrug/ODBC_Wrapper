@@ -26,6 +26,10 @@ cmake ..
 make -j
 
 
+## Automate Unit Tests before each commit by Git Hooks
+
+https://blog.devgenius.io/automate-unit-tests-before-each-commit-by-git-hook-f331f0499786
+
 ## vscode
 
 ### Add the following line to c_cpp_properties.json for debugging:
