@@ -30,6 +30,8 @@ make -j
 
 https://blog.devgenius.io/automate-unit-tests-before-each-commit-by-git-hook-f331f0499786
 
+https://medium.com/@yagizcemberci/automate-unit-tests-with-git-hooks-e25e8b564c92
+
 ## vscode
 
 ### Add the following line to c_cpp_properties.json for debugging:
