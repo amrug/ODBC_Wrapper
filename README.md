@@ -25,3 +25,15 @@ cmake ..
 
 make -j
 
+
+## vscode
+
+### Add the following line to c_cpp_properties.json for debugging:
+
+"compileCommands": "${workspaceFolder}/build/compile_commands.json",
+
+### Auto generate c_cpp_properties.json:
+
+Press STRG+SHIFT+p
+
+and select C/C++: Edit Configurations (JSON)
