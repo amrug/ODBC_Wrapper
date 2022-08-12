@@ -1,6 +1,7 @@
 # Minimal example to set up a C++ project with CMake and gtest
 
 $ tree
+
 ├── bin/
 
 ├── build/
