@@ -2,20 +2,34 @@
 
 $ tree
 ├── bin/
+
 ├── build/
+
 ├── CMakeLists.txt
+
 ├── lib/
+
 ├── README.md
+
 ├── src/
+
 │   ├── CMakeLists.txt
+
 │   ├── libmymath/
+
 │   │   ├── CMakeLists.txt
+
 │   │   ├── mymath.cpp
+
 │   │   └── mymath.h
+
 │   └── main.cpp
+
 └── tests/
-    ├── CMakeLists.txt
-    └── test_hello.cpp
+
+├── CMakeLists.txt
+
+└── test_hello.cpp
 
 ## Build instructions:
 
