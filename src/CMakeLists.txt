@@ -1,10 +1,14 @@
-cmake_minimum_required(VERSION 2.4)
+cmake_minimum_required(VERSION 3.0.0)
 
-add_executable(main main.cpp)
+add_executable(
+  main
+  main.cpp
+  )
 
 target_link_libraries(
   main
-  mymath
+  ODBC_Wrapper
+  odbc
 )
 
-add_subdirectory(libmymath)
+add_subdirectory(libODBC_Wrapper)
