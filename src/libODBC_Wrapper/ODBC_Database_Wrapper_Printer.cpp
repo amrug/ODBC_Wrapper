@@ -1,6 +1,8 @@
 #include "ODBC_Database_Wrapper_Printer.h"
 #include "ODBC_Database_Wrapper.h"
 
+#include <string.h>
+
 void ODBC_Database_Wrapper_CsvPrinter::print(std::shared_ptr<ODBC_Database_Wrapper> db, std::ostream& os) {
     const char separator    = ' ';
     const int nameWidth     = 25;

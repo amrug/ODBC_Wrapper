@@ -1,7 +1,7 @@
-#pragma once
-
 #ifndef ODBC_DATABASE_WRAPPER_PRINTER_H_
 #define ODBC_DATABASE_WRAPPER_PRINTER_H_
+
+#pragma once
 
 #include <memory>
 #include <iostream>
