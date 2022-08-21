@@ -1,12 +1,12 @@
 #include "ODBC_Database_Wrapper_Printer.h"
 #include "ODBC_Database_Wrapper.h"
 
-void ODBC_Database_Wrapper_CsvPrinter::print(std::shared_ptr<ABC_ODBC_Database_Wrapper> m_db, std::ostream& os) {
+void ODBC_Database_Wrapper_CsvPrinter::print(std::shared_ptr<ODBC_Database_Wrapper> db, std::ostream& os) {
     const char separator    = ' ';
     const int nameWidth     = 25;
     const int numWidth      = 8;
 
-    if (auto db = dynamic_cast<ODBC_Database_Wrapper*>(m_db.get()))
+    //if (auto db = dynamic_cast<ODBC_Database_Wrapper*>(db.get()))
     {
         // do Child specific stuff
         while (SQL_SUCCEEDED(db->ret = SQLFetch(db->stmt))) {
@@ -28,8 +28,8 @@ void ODBC_Database_Wrapper_CsvPrinter::print(std::shared_ptr<ABC_ODBC_Database_W
 };
 
 
-void ODBC_Database_Wrapper_Printer::print(std::shared_ptr<ABC_ODBC_Database_Wrapper> m_db, std::ostream& os) {
-    if (auto db = dynamic_cast<ODBC_Database_Wrapper*>(m_db.get()))
+void ODBC_Database_Wrapper_Printer::print(std::shared_ptr<ODBC_Database_Wrapper> db, std::ostream& os) {
+    // if (auto db = dynamic_cast<ODBC_Database_Wrapper*>(db.get()))
     {
         // do Child specific stuff
         while (SQL_SUCCEEDED(db->ret = SQLFetch(db->stmt))) {

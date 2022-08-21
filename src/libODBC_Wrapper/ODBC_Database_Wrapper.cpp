@@ -1,6 +1,6 @@
 #include "ODBC_Database_Wrapper.h"
 
-void extract_error(
+void ODBC_Database_Wrapper::extract_error(
     char *fn,
     SQLHANDLE handle,
     SQLSMALLINT type)
