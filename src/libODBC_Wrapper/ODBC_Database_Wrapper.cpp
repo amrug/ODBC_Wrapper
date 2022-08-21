@@ -5,66 +5,93 @@ void ODBC_Database_Wrapper::extract_error(
     SQLHANDLE handle,
     SQLSMALLINT type)
 {
-    SQLINTEGER   i = 0;
-    SQLINTEGER   native;
-    SQLCHAR      state[ 7 ];
-    SQLCHAR      text[256];
-    SQLSMALLINT  len;
-    SQLRETURN    ret;
+  SQLINTEGER i = 0;
+  SQLINTEGER native;
+  SQLCHAR state[7];
+  SQLCHAR text[256];
+  SQLSMALLINT len;
+  SQLRETURN ret;
 
-    fprintf(stderr,
-            "\n"
-            "The driver reported the following diagnostics whilst running "
-            "%s\n\n",
-            fn);
+  fprintf(stderr,
+          "\n"
+          "The driver reported the following diagnostics whilst running "
+          "%s\n\n",
+          fn);
 
-    do
-    {
-        ret = SQLGetDiagRec(type, handle, ++i, state, &native, text,
-                            sizeof(text), &len );
-        if (SQL_SUCCEEDED(ret))
-            printf("%s:%d:%d:%s\n", state, i, native, text);
-    }
-    while( ret == SQL_SUCCESS );
+  do
+  {
+    ret = SQLGetDiagRec(type, handle, ++i, state, &native, text,
+                        sizeof(text), &len);
+    if (SQL_SUCCEEDED(ret))
+      printf("%s:%d:%d:%s\n", state, i, native, text);
+  } while (ret == SQL_SUCCESS);
 }
 
-
-
-void ODBC_Database_Wrapper::execute(std::string sql_query) {
+void ODBC_Database_Wrapper::execute(std::string sql_query)
+{
   SQLFreeHandle(SQL_HANDLE_STMT, stmt);
   SQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);
-  ret = SQLExecDirect(stmt, (unsigned char*)sql_query.c_str(), sql_query.size());
+  ret = SQLExecDirect(stmt, (unsigned char *)sql_query.c_str(), sql_query.size());
+  if (!SQL_SUCCEEDED(ret))
+  {
+    throw std::runtime_error("Execute SQL_Query failed:\n\t" + sql_query);
+  }
   SQLNumResultCols(stmt, &columns);
 }
 
-ODBC_Database_Wrapper::ODBC_Database_Wrapper(std::string connection) {
+ODBC_Database_Wrapper::ODBC_Database_Wrapper(std::string connection)
+{
   /* Allocate an environment handle */
   SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);
   /* We want ODBC 3 support */
-  SQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, (void *) SQL_OV_ODBC3, 0);
+  ret = SQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, (void *)SQL_OV_ODBC3, 0);
+  if (!SQL_SUCCEEDED(ret))
+  {
+    std::stringstream ss;
+    ss << "SQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, (void *)SQL_OV_ODBC3, 0) failed:" << std::endl
+       << "\tret: " << ret << std::endl;
+    throw std::runtime_error(ss.str());
+  }
+
   /* Allocate a connection handle */
-  SQLAllocHandle(SQL_HANDLE_DBC, env, &dbc);
+  ret = SQLAllocHandle(SQL_HANDLE_DBC, env, &dbc);
+  if (!SQL_SUCCEEDED(ret))
+  {
+    std::stringstream ss;
+    ss << "SQLAllocHandle(SQL_HANDLE_DBC, env, &dbc) failed: " << std::endl
+       << "\tenv: " << env << std::endl
+       << "\tret: " << ret << std::endl;
+    throw std::runtime_error(ss.str());
+  }
+
   /* Connect to the DSN ODBC */
-  ret = SQLDriverConnect(dbc, NULL, (unsigned char*)"DSN=ODBC;", SQL_NTS,
+  ret = SQLDriverConnect(dbc, NULL, (unsigned char *)connection.c_str(), SQL_NTS,
                          outstr, sizeof(outstr), &outstrlen,
                          SQL_DRIVER_COMPLETE);
 
-
-  SQLAllocStmt(dbc, &stmt);
-
-  if (SQL_SUCCEEDED(ret)) {
-    printf("Connected\n");
+  if (SQL_SUCCEEDED(ret))
+  {
     // printf("Returned connection string was:\n\t%s\n", outstr);
-    if (ret == SQL_SUCCESS_WITH_INFO) {
+    if (ret == SQL_SUCCESS_WITH_INFO)
+    {
       printf("Driver reported the following diagnostics\n");
-      extract_error((char*)"SQLDriverConnect", dbc, SQL_HANDLE_DBC);
+      extract_error((char *)"SQLDriverConnect", dbc, SQL_HANDLE_DBC);
     }
     // std::cout << "=================" << std::endl;
   }
+  else
+  {
+    std::stringstream ss;
+    ss << "SQLDriverConnect failed in file:\n" << __FILE__<< ", line: " << __LINE__ << std::endl
+       << "\tconnection: " << connection << std::endl
+       << "\toutstr: " << outstr << std::endl
+       << "\tret: " << ret << std::endl;
+    throw std::runtime_error(ss.str());
+  }
 }
 
-
-ODBC_Database_Wrapper::~ODBC_Database_Wrapper() {
+ODBC_Database_Wrapper::~ODBC_Database_Wrapper()
+{
   /* free up allocated handles */
   SQLFreeHandle(SQL_HANDLE_STMT, stmt);
   SQLDisconnect(dbc);
