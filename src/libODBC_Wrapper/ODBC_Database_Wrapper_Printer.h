@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef ODBC_DATABASE_WRAPPER_PRINTER_H_
 #define ODBC_DATABASE_WRAPPER_PRINTER_H_
 
