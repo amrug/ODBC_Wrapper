@@ -4,4 +4,7 @@ project(ODBC_Wrapper VERSION 0.0.1 DESCRIPTION "ODBC_Wrapper")
 add_library(${PROJECT_NAME} SHARED
   ODBC_Database_Wrapper.cpp
   ODBC_Database_Wrapper_Printer.cpp
+  ODBC_Database.cpp
+  ODBC_CSV_Printer.cpp
+  ODBC_NORMAL_Printer.cpp
 )
