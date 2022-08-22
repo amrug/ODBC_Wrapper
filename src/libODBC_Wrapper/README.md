@@ -1,4 +1,6 @@
-* Install ODBC-driver for your database. In case of PostgreSQL:
+This is a C++ Wrapper for ODBC-Databases.
+
+* Install ODBC-driver for your database. In case of PostgreSQL and Debian Linux:
 
 apt install unixodbc-dev odbc-postgresql
 
