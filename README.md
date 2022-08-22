@@ -6,6 +6,7 @@
 
 
 `cat /etc/odbcinst.ini `
+
 ```
 [PostgreSQL ANSI]
 Description=PostgreSQL ODBC driver (ANSI version)
@@ -25,6 +26,7 @@ UsageCount=1
 ```
 
 `cat ~/.odbc.ini`
+
 ```
 [ODBC]
 Driver = PostgreSQL ANSI
