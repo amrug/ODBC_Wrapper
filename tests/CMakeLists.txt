@@ -17,7 +17,7 @@ add_executable(
 target_link_libraries(
   test_hello
   GTest::gtest_main
-  mymath
+  ODBC_Wrapper
 )
 include(GoogleTest)
 gtest_discover_tests(test_hello)

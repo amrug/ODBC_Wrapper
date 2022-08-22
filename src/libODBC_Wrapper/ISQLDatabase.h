@@ -9,6 +9,7 @@ class ISQLDatabase
 {
 public:
   virtual void execute_sql(std::string sql_query) = 0;
+  virtual void connect(std::string connection) = 0;
 };
 
 #endif

@@ -1,45 +1,36 @@
-# Minimal example to set up a C++ project with CMake and gtest
+# This is a C++ Wrapper for ODBC-Databases.
 
-$ tree
-<br>├── bin/
-<br>├── build/
-<br>├── CMakeLists.txt
-<br>├── lib/
-<br>├── README.md
-<br>├── src/
-<br>│   ├── CMakeLists.txt
-<br>│   ├── libmymath/
-<br>│   │   ├── CMakeLists.txt
-<br>│   │   ├── mymath.cpp
-<br>│   │   └── mymath.h
-<br>│   └── main.cpp
-<br>└── tests/
-<br>     ├── CMakeLists.txt
-<br>     └── test_hello.cpp
+## Install ODBC-driver for your database. In case of PostgreSQL and Debian Linux:
 
-## Build instructions:
-
-cd build 
-
-cmake ..
-
-make -j
+`apt install unixodbc-dev odbc-postgresql`
 
 
-## Automate Unit Tests before each commit by Git Hooks
+`cat /etc/odbcinst.ini `
+```
+[PostgreSQL ANSI]
+Description=PostgreSQL ODBC driver (ANSI version)
+Driver=psqlodbca.so
+Setup=libodbcpsqlS.so
+Debug=0
+CommLog=1
+UsageCount=1
 
-https://blog.devgenius.io/automate-unit-tests-before-each-commit-by-git-hook-f331f0499786
+[PostgreSQL Unicode]
+Description=PostgreSQL ODBC driver (Unicode version)
+Driver=psqlodbcw.so
+Setup=libodbcpsqlS.so
+Debug=0
+CommLog=1
+UsageCount=1
+```
 
-https://medium.com/@yagizcemberci/automate-unit-tests-with-git-hooks-e25e8b564c92
-
-## vscode
-
-### Add the following line to c_cpp_properties.json for debugging:
-
-"compileCommands": "${workspaceFolder}/build/compile_commands.json",
-
-### Auto generate c_cpp_properties.json:
-
-Press STRG+SHIFT+p
-
-and select C/C++: Edit Configurations (JSON)
+`cat ~/.odbc.ini`
+```
+[ODBC]
+Driver = PostgreSQL ANSI
+Server = localhost,5432
+Protocol = 8.4
+UserName = postgres
+Password = mypassword
+Database = test
+```
