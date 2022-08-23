@@ -5,9 +5,9 @@
 
 #include <memory>
 #include <iostream>
-#include "IPrintableDatabase.h"
-#include "IDatabasePrinter.h"
-#include "ISQLDatabase.h"
+#include "IPrintableDatabase.hpp"
+#include "IDatabasePrinter.hpp"
+#include "ISQLDatabase.hpp"
 
 #include <sql.h>
 #include <sqlext.h>

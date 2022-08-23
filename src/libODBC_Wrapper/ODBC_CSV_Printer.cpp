@@ -1,6 +1,6 @@
-#include "ODBC_CSV_Printer.h"
+#include "ODBC_CSV_Printer.hpp"
 
-#include "ODBC_Database.h"
+#include "ODBC_Database.hpp"
 
 ODBC_CSV_Printer::ODBC_CSV_Printer(SQLHSTMT &stmt,
                                    SQLSMALLINT columns)

@@ -1,9 +1,9 @@
-#ifndef ODBC_NORMAL_PRINTER_H
-#define ODBC_NORMAL_PRINTER_H
+#ifndef ODBC_CSV_PRINTER_H
+#define ODBC_CSV_PRINTER_H
 
 #pragma once
 
-#include "IDatabasePrinter.h"
+#include "IDatabasePrinter.hpp"
 #include <iostream>
 
 #include <sql.h>
@@ -14,10 +14,10 @@
 
 class ODBC_Database;
 
-class ODBC_NORMAL_Printer : public IDatabasePrinter
+class ODBC_CSV_Printer : public IDatabasePrinter
 {
 public:
-  ODBC_NORMAL_Printer(SQLHSTMT &stmt, SQLSMALLINT columns);
+  ODBC_CSV_Printer(SQLHSTMT &stmt, SQLSMALLINT columns);
 
   void print(std::ostream &os = std::cout) override;
 

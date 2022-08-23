@@ -1,6 +1,6 @@
-#include "ODBC_NORMAL_Printer.h"
+#include "ODBC_NORMAL_Printer.hpp"
 
-#include "ODBC_Database.h"
+#include "ODBC_Database.hpp"
 
 ODBC_NORMAL_Printer::ODBC_NORMAL_Printer(SQLHSTMT& stmt,
                                          SQLSMALLINT columns)

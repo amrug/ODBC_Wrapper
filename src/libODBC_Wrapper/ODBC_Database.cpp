@@ -1,9 +1,9 @@
-#include "ODBC_Database.h"
+#include "ODBC_Database.hpp"
 
 #include <exception>
 #include <sstream>
-#include "ODBC_NORMAL_Printer.h"
-#include "ODBC_CSV_Printer.h"
+#include "ODBC_NORMAL_Printer.hpp"
+#include "ODBC_CSV_Printer.hpp"
 
 void ODBC_Database::extract_error(
     char *fn,

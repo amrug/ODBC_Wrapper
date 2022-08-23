@@ -1,7 +1,7 @@
 //
 // https://www.easysoft.com/developer/languages/c/odbc_tutorial.html
 //
-#include "ODBC_Database.h"
+#include "ODBC_Database.hpp"
 
 int main()
 {
