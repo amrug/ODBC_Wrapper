@@ -5,6 +5,9 @@
 #include "ODBC_NORMAL_Printer.hpp"
 #include "ODBC_CSV_Printer.hpp"
 
+
+NS_ODBC_WRAPPER_START
+
 void ODBC_Database::extract_error(
     char *fn,
     SQLHANDLE handle,
@@ -138,3 +141,5 @@ std::shared_ptr<IDatabasePrinter> ODBC_Database::createPrinter(PRINTER_STYLE pri
         throw std::runtime_error(ss.str());
     }
 };
+
+NS_ODBC_WRAPPER_END

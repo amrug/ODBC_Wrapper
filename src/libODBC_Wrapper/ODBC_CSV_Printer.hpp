@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "Config.hpp"
 #include "IDatabasePrinter.hpp"
 #include <iostream>
 
@@ -11,6 +12,8 @@
 #include <iomanip>
 #include <string.h>
 #include <memory>
+
+NS_ODBC_WRAPPER_START
 
 class ODBC_Database;
 
@@ -25,5 +28,8 @@ private:
   SQLHSTMT &m_stmt;
   SQLSMALLINT m_columns;
 };
+
+
+NS_ODBC_WRAPPER_END
 
 #endif

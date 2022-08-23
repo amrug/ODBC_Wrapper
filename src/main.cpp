@@ -3,6 +3,8 @@
 //
 #include "ODBC_Database.hpp"
 
+using namespace odbcwrapper;
+
 int main()
 {
   auto db = std::make_shared<ODBC_Database>("DSN=ODBC;");

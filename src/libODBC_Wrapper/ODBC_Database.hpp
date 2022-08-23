@@ -3,11 +3,13 @@
 
 #pragma once
 
+#include "Config.hpp"
 #include <memory>
 #include <iostream>
 #include "IPrintableDatabase.hpp"
 #include "IDatabasePrinter.hpp"
 #include "ISQLDatabase.hpp"
+#include "Config.hpp"
 
 #include <sql.h>
 #include <sqlext.h>
@@ -23,6 +25,10 @@
  *  ODBC_CSV_Printer   <---------------------- ODBC_Database
  *  ODBC_NORMAL_Printer
  */
+
+
+
+NS_ODBC_WRAPPER_START
 
 class ODBC_Database : public ISQLDatabase,
                       IPrintableDatabase
@@ -52,5 +58,8 @@ private:
   SQLSMALLINT columns = 3;
   int row = 0;
 };
+
+
+NS_ODBC_WRAPPER_END
 
 #endif

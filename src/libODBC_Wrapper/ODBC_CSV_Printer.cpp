@@ -2,6 +2,9 @@
 
 #include "ODBC_Database.hpp"
 
+
+NS_ODBC_WRAPPER_START
+
 ODBC_CSV_Printer::ODBC_CSV_Printer(SQLHSTMT &stmt,
                                    SQLSMALLINT columns)
     : m_stmt(stmt), m_columns(columns)
@@ -37,3 +40,6 @@ void ODBC_CSV_Printer::print(std::ostream &os)
   }
   os << "\n";
 }
+
+
+NS_ODBC_WRAPPER_END
